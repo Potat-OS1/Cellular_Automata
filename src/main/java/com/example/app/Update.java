@@ -18,25 +18,24 @@ public class Update extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        if (now - lastUpdate >= 1_000.0) {
+        if (now - lastUpdate >= 1_000_000.0) {
             //
-            //randomPos = Tools.generateRandom(0, Controller.numCellsWidth-1);
-            randomPos = Tools.generateRandom(0, 20);
+            randomPos = Tools.generateRandom(0, Controller.numCellsWidth-1);
             if (Controller.particleArray[randomPos][0] == null) {
-                spawnParticle(1);
+                spawnParticle();
             }
-            randomPos = Tools.generateRandom(20, 60);
-            if (Controller.particleArray[randomPos][0] == null) {
-                spawnParticle(0);
-            }
-            randomPos = Tools.generateRandom(60, 80);
-            if (Controller.particleArray[randomPos][0] == null) {
-                spawnParticle(1);
-            }
-            randomPos = Tools.generateRandom(58, Controller.numCellsWidth-1);
-            if (Controller.particleArray[randomPos][0] == null) {
-                spawnParticle(0);
-            }
+//            randomPos = Tools.generateRandom(20, 60);
+//            if (Controller.particleArray[randomPos][0] == null) {
+//                spawnParticle(0);
+//            }
+//            randomPos = Tools.generateRandom(60, 80);
+//            if (Controller.particleArray[randomPos][0] == null) {
+//                spawnParticle();
+//            }
+//            randomPos = Tools.generateRandom(58, Controller.numCellsWidth-1);
+//            if (Controller.particleArray[randomPos][0] == null) {
+//                spawnParticle(0);
+//            }
             for (Particle p : Controller.particle) {
                 gravity(p);
             }
@@ -52,8 +51,14 @@ public class Update extends AnimationTimer {
     }
 
     void spawnParticle(int Type) {
-        //randomType = Tools.generateRandom(0, 1);
         switch (Type) {
+            case (0) -> Tools.add(randomPos, 0, Color.LIGHTBLUE, "WATER");
+            case (1) -> Tools.add(randomPos, 0, Color.BISQUE, "SAND");
+        }
+    }
+    void spawnParticle() {
+        randomType = Tools.generateRandom(0, 1);
+        switch (randomType) {
             case (0) -> Tools.add(randomPos, 0, Color.LIGHTBLUE, "WATER");
             case (1) -> Tools.add(randomPos, 0, Color.BISQUE, "SAND");
         }
