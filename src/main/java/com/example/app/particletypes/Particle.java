@@ -7,8 +7,8 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Particle{
     Rectangle r;
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     int lastX;
     int lastY;
     Particle neighbor1;
@@ -20,6 +20,10 @@ public abstract class Particle{
         r = new Rectangle(Controller.cellWidth, Controller.cellHeight);
         r.setFill(c);
         r.setOpacity(.5);
+    }
+
+    public Color returnColor() {
+        return (Color) r.getFill();
     }
 
     public int getX() {
@@ -35,8 +39,8 @@ public abstract class Particle{
         setPosition();
     }
 
-    void getPosition() {
-        System.out.println(ping() + "@" + r.getLayoutX() + " - " + r.getLayoutY());
+    public String getType() {
+        return this.getClass().getName();
     }
 
     public void setPosition(int yForce, int xForce) {
@@ -52,8 +56,4 @@ public abstract class Particle{
         r.setLayoutX(x*(r.getWidth()));
         r.setLayoutY(y*(r.getHeight()));
     }
-
-
-    abstract String ping();
-
 }

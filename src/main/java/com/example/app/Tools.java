@@ -1,7 +1,6 @@
 package com.example.app;
 
 import com.example.app.particletypes.*;
-import javafx.scene.paint.Color;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -14,13 +13,14 @@ public class Tools extends Controller{
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
-    public static void add(int x, int y, Color c, String type) {
+    public static void add(int x, int y, String type) {
         Particle p;
         switch(type) {
-            case ("SAND") -> p = new Sand(c, x , y);
-            case ("STONE") -> p = new Stone(c, x, y);
-            case ("WATER") -> p = new Water(c, x, y);
-            default -> p = new Air(c, x, y);
+            case ("SAND") -> p = new Sand(particleColors.get(0), x , y);
+            case ("STONE") -> p = new Stone(particleColors.get(1), x, y);
+            case ("WATER") -> p = new Water(particleColors.get(2), x, y);
+            case ("OIL") -> p = new Water(particleColors.get(4), x, y);
+            default -> p = new Air(particleColors.get(3), x, y);
         }
         p.addToScene(pane);
         particle.add(p);
